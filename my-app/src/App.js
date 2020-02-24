@@ -20,28 +20,30 @@ class App extends React.Component {
     .then(response => {
       let user = response.data; 
       console.log(user)
+
+      this.setState({
+        profilePic: user.avatar_url,
+        name: user.login,
+        followers: user.followers,
+        following: user.following,
+      });
     })
     .catch(error => {
       console.log(error)
     });
 
-  //   this.setState({
-  //     profilePic: user.avatar_url,
-  //     name: user.login,
-  //     followers: user.followers,
-  //     following: user.following,
-  //   });
+
     }
   
   render() {
     return (
       <div className="App">
-        {/* <UserCard 
+        <UserCard 
           name={this.state.name} 
           imgSrc={this.state.profilePic} 
           followers={this.state.followers} 
           following={this.state.following} 
-        /> */}
+        />
       </div>
     );
   }
