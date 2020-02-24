@@ -25,23 +25,23 @@ class App extends React.Component {
       console.log(error)
     });
 
-    this.setState({
-      profilePic: user.avatar_url,
-      name: user.name,
-      followers: user.followers,
-      following: user.following,
-    });
-  }
+  //   this.setState({
+  //     profilePic: user.avatar_url,
+  //     name: user.login,
+  //     followers: user.followers,
+  //     following: user.following,
+  //   });
+    }
   
   render() {
     return (
       <div className="App">
-        <UserCard 
+        {/* <UserCard 
           name={this.state.name} 
           imgSrc={this.state.profilePic} 
           followers={this.state.followers} 
           following={this.state.following} 
-        />
+        /> */}
       </div>
     );
   }
