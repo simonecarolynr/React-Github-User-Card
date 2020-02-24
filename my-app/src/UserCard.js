@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default class UserCard extends React.Component (props) {
-
+export default class UserCard extends React.Component {
+    constructor(props) {
+        super();
+    }
     render() {
         let { name, imgSrc, followers, following } = this.props;
         return ( 
