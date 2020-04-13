@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import axios from 'axios';
 import UserCard from './UserCard';
+import FollowerCard from './FollowerCard';
 
 class App extends React.Component {
   constructor() {
@@ -11,6 +12,8 @@ class App extends React.Component {
       name: '',
       followers: '',
       following: '',
+      follower: '',
+      followerPic: '',
     }
   }
 
@@ -19,7 +22,7 @@ class App extends React.Component {
     .get('https://api.github.com/users/simonecarolynr')
     .then(response => {
       let user = response.data; 
-      console.log(user)
+      console.log(response)
 
       this.setState({
         profilePic: user.avatar_url,
@@ -31,6 +34,21 @@ class App extends React.Component {
     .catch(error => {
       console.log(error)
     });
+
+    axios
+    .get('https://api.github.com/users/simonecarolynr/followers')
+    .then(response => {
+      let followers = response.data;
+      console.log(followers)
+
+      this.setState({
+        follower: followers.login,
+        followerPic: followers.imgSrc,
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
 
 
     }
@@ -44,6 +62,13 @@ class App extends React.Component {
           followers={this.state.followers} 
           following={this.state.following} 
         />
+        {this.followers.map(follower => {
+          return <FollowerCard 
+            name={this.state.follower} 
+            imgSrc={this.state.followerPic} 
+          />
+        }
+        )}
       </div>
     );
   }
